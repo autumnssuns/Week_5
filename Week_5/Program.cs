@@ -8,8 +8,22 @@
             Console.WriteLine(Environment.CurrentDirectory);
             string file = GetFileName();
             CheckIfFileExist(file);
+            string choice = "";
+            while (choice != "3")
+            {
+                Console.WriteLine(@"Please select and option:
+1. Display Summary
+2. Add a new line
+3. Quit from the program");
+                choice = Console.ReadLine();
+                if (choice == "1")
+                {
+                    DisplaySummary(file);
+                } else if (choice == "2")
+                {
 
-            DisplaySummary(file);
+                }
+            }
         }
 
         public static void DisplaySummary(string file)
