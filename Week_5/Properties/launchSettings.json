@@ -2,7 +2,7 @@
   "profiles": {
     "Week_5": {
       "commandName": "Project",
-      "workingDirectory": "C:\\Users\\trand8\\source\\repos\\Week_5\\Week_5"
+      "workingDirectory": "."
     }
   }
 }
