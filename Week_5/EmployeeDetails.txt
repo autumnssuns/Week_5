@@ -3,3 +3,4 @@
 3,Carolyn,85000
 4,David,13000
 5,Edwin,60000
+6,Dan,0

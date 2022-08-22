@@ -21,42 +21,54 @@
                     DisplaySummary(file);
                 } else if (choice == "2")
                 {
-
+                    WriteData(file);
                 }
+            }
+        }
+
+        public static void WriteData(string file)
+        {
+            using (StreamWriter writer = new StreamWriter(file, append: true))
+            {
+                Console.WriteLine("What do you want to write, formatted as <id>, <name>, <salary>:");
+                string newLine = Console.ReadLine();
+                writer.WriteLine(newLine);
             }
         }
 
         public static void DisplaySummary(string file)
         {
-            StreamReader reader = new StreamReader(file);
-            double totalSalary = 0;
-            int employeeCount = 0;
-            double maxSalary = 0;
-            double minSalary = double.MaxValue;
-            while (!reader.EndOfStream)
+            using (StreamReader reader = new StreamReader(file))
             {
-                string line = reader.ReadLine();
-                string[] data = line.Split(',');
-                int id = int.Parse(data[0]);
-                string name = data[1];
-                double salary = double.Parse(data[2]);
-                Console.WriteLine($"Employee {name} with id {id} has salary {salary}.");
-                //salaryList.Add(salary);
-                totalSalary += salary;
-                employeeCount++;
-                if (salary > maxSalary)
+                double totalSalary = 0;
+                int employeeCount = 0;
+                double maxSalary = 0;
+                double minSalary = double.MaxValue;
+                while (!reader.EndOfStream)
                 {
-                    maxSalary = salary;
+                    string line = reader.ReadLine();
+                    string[] data = line.Split(',');
+                    int id = int.Parse(data[0]);
+                    string name = data[1];
+                    double salary = double.Parse(data[2]);
+                    Console.WriteLine($"Employee {name} with id {id} has salary {salary}.");
+                    //salaryList.Add(salary);
+                    totalSalary += salary;
+                    employeeCount++;
+                    if (salary > maxSalary)
+                    {
+                        maxSalary = salary;
+                    }
+                    if (salary < minSalary)
+                    {
+                        minSalary = salary;
+                    }
                 }
-                if (salary < minSalary)
-                {
-                    minSalary = salary;
-                }
+                double averageSalary = totalSalary / employeeCount;
+                Console.WriteLine($"The average salary is {averageSalary}");
+                Console.WriteLine($"The maximum salary is {maxSalary}");
+                Console.WriteLine($"The minimum salary is {minSalary}");
             }
-            double averageSalary = totalSalary / employeeCount;
-            Console.WriteLine($"The average salary is {averageSalary}");
-            Console.WriteLine($"The maximum salary is {maxSalary}");
-            Console.WriteLine($"The minimum salary is {minSalary}");
         }
 
         public static string GetFileName()
